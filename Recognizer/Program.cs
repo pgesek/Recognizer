@@ -5,6 +5,7 @@ using System.Text;
 
 using LAIR.ResourceAPIs.WordNet;
 using LAIR.Collections.Generic;
+
 using Recognizer.IO;
 
 namespace Recognizer
