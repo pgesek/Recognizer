@@ -17,12 +17,15 @@ namespace Recognizer
 
         private Dictionary<string, Term> nouns = new Dictionary<string, Term>();
 
-        public Recognizer(string wordnetDir, bool inMemory)
+        public Recognizer()
         {
+            string wordnetDir = Properties.Settings.Default.WordnetDir;
+            bool inMemory = Properties.Settings.Default.WordnetInMemory;
+
             wordnet = new WordNetEngine(wordnetDir, inMemory);
         }
 
-        public void Run(ISentenceReader reader)
+        public void Run(IInputReader reader)
         {
             Parse(reader.ReadInput());
         }

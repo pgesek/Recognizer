@@ -5,5 +5,14 @@
     <Setting Name="SyntetSelection" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="WordnetDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Geso\workspace\mgr\WNdb-3.0\dict</Value>
+    </Setting>
+    <Setting Name="ModelDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Geso\workspace\mgr\models</Value>
+    </Setting>
+    <Setting Name="WordnetInMemory" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

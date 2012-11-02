@@ -58,5 +58,17 @@ namespace Recognizer.Properties {
                 this["ModelDir"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WordnetInMemory {
+            get {
+                return ((bool)(this["WordnetInMemory"]));
+            }
+            set {
+                this["WordnetInMemory"] = value;
+            }
+        }
     }
 }
