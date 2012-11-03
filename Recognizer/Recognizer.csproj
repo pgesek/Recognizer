@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoW\BagOfWords.cs" />
     <Compile Include="Glossary\DefaultGlossary.cs" />
     <Compile Include="Glossary\DuplicateEntryException.cs" />
     <Compile Include="Glossary\GlossaryEntry.cs" />
