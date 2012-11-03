@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Glossary\DefaultGlossary.cs" />
+    <Compile Include="Glossary\DuplicateEntryException.cs" />
+    <Compile Include="Glossary\GlossaryEntry.cs" />
+    <Compile Include="Glossary\IGlossary.cs" />
+    <Compile Include="Glossary\IGlossaryEntry.cs" />
     <Compile Include="IO\FileReader.cs" />
     <Compile Include="IO\IInputReader.cs" />
     <Compile Include="IO\StdinReader.cs" />
@@ -63,11 +68,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Terms\Term.cs" />
     <Compile Include="Recognizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Terms\TermDictionary.cs" />
     <Compile Include="Util\FileUtils.cs" />
     <Compile Include="Util\StringUtil.cs" />
   </ItemGroup>
@@ -78,6 +81,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

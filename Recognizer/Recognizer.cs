@@ -4,7 +4,6 @@ using LAIR.ResourceAPIs.WordNet;
 using OpenNLP.Tools.Parser;
 using Recognizer.IO;
 using Recognizer.NLP;
-using Recognizer.Terms;
 using Recognizer.Util;
 
 namespace Recognizer
