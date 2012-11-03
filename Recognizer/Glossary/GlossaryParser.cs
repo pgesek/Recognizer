@@ -22,7 +22,7 @@ namespace Recognizer.Glossary
             {
                 string[] tokens = line.Split(new String[] { " " }, StringSplitOptions.None);
 
-                string ID = (readIds) ? tokens[0] : (currentID++).ToString();
+                string ID = (readIds) ? tokens[0] : currentID++.ToString();
                 string word = (readIds) ? tokens[1] : tokens[0];
 
                 int skip = (readIds) ? 2 : 1;

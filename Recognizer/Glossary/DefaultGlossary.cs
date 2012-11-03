@@ -89,10 +89,10 @@ namespace Recognizer.Glossary
             int id = 0; // for TryParse
 
             int maxID  = (from entry in glossary
-                      where int.TryParse(entry.ID, out id)
-                      select id).Max();
+                          where int.TryParse(entry.ID, out id)
+                          select id).Max();
 
-            return (maxID++).ToString();
+            return (maxID + 1).ToString();
         }
     }
 }
