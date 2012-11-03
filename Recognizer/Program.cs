@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using LAIR.ResourceAPIs.WordNet;
-using LAIR.Collections.Generic;
-
-using Recognizer.IO;
+﻿using Recognizer.IO;
 
 namespace Recognizer
 {

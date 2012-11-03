@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-
-using OpenNLP.Tools.SentenceDetect;
-using OpenNLP.Tools.Tokenize;
-using OpenNLP.Tools.PosTagger;
 using OpenNLP.Tools.Chunker;
 using OpenNLP.Tools.Parser;
+using OpenNLP.Tools.PosTagger;
+using OpenNLP.Tools.SentenceDetect;
+using OpenNLP.Tools.Tokenize;
 using Recognizer.Util;
 
 namespace Recognizer.NLP

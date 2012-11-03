@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-using LAIR.ResourceAPIs.WordNet;
+﻿using System.Collections.Generic;
 using LAIR.Collections.Generic;
-using OpenNLP.Tools.SentenceDetect;
+using LAIR.ResourceAPIs.WordNet;
 using OpenNLP.Tools.Parser;
-
-using Recognizer.Util;
 using Recognizer.IO;
-using Recognizer.Terms;
 using Recognizer.NLP;
+using Recognizer.Terms;
+using Recognizer.Util;
 
 namespace Recognizer
 {
