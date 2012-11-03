@@ -70,5 +70,17 @@ namespace Recognizer.Properties {
                 this["WordnetInMemory"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Geso\\workspace\\mgr\\input.txt")]
+        public string InputFile {
+            get {
+                return ((string)(this["InputFile"]));
+            }
+            set {
+                this["InputFile"] = value;
+            }
+        }
     }
 }

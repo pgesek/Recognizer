@@ -15,7 +15,7 @@ namespace Recognizer
         static void Main(string[] args)
         {
             Recognizer recognizer = new Recognizer();
-            IInputReader reader = new StdinReader();
+            IInputReader reader = new FileReader(Properties.Settings.Default.InputFile);
 
             recognizer.Run(reader);
         }
