@@ -7,23 +7,19 @@ using System.Text;
 using LAIR.ResourceAPIs.WordNet;
 using LAIR.Collections.Generic;
 using OpenNLP.Tools.SentenceDetect;
-using OpenNLP.Tools.Tokenize;
-using OpenNLP.Tools.PosTagger;
-using OpenNLP.Tools.Chunker;
+using OpenNLP.Tools.Parser;
 
 using Recognizer.Util;
 using Recognizer.IO;
 using Recognizer.Terms;
+using Recognizer.NLP;
 
 namespace Recognizer
 {
     class Recognizer
     {
         private WordNetEngine wordnet;
-        private EnglishMaximumEntropySentenceDetector sentenceDetector;
-        private EnglishMaximumEntropyTokenizer tokenizer;
-        private EnglishMaximumEntropyPosTagger posTagger;
-        private EnglishTreebankChunker chunker;
+        private OpenNLPService nlp;
 
         private Dictionary<string, Term> nouns = new Dictionary<string, Term>();
 
@@ -44,25 +40,14 @@ namespace Recognizer
         public void Init(string wordnetDir, bool inMemory, string modelDir)
         {
             wordnet = new WordNetEngine(wordnetDir, inMemory);
-            sentenceDetector = new EnglishMaximumEntropySentenceDetector(Path.Combine(modelDir, "EnglishSD.nbin"));
-            tokenizer = new EnglishMaximumEntropyTokenizer(Path.Combine(modelDir, "EnglishTok.nbin"));
-            posTagger = new EnglishMaximumEntropyPosTagger(Path.Combine(modelDir, "EnglishPOS.nbin"));
-            chunker = new EnglishTreebankChunker(Path.Combine(modelDir, "EnglishChunk.nbin"));
+            nlp = new OpenNLPService(modelDir);
         }
 
         public void Run(IInputReader reader)
         {
             string input = reader.ReadInput();
 
-            string[] sentences = sentenceDetector.SentenceDetect(input);
-
-            foreach (string sentence in sentences)
-            {
-                string[] tokens = tokenizer.Tokenize(sentence);
-                string[] tags = posTagger.Tag(tokens);
-
-                string formattedSentence = chunker.GetChunks(tokens, tags);
-            }
+            IEnumerable<Parse> sentences = nlp.ParseInput(input);
         }
 
         private void ParseSentence(string sentence)
