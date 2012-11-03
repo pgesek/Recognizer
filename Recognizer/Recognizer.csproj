@@ -53,15 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO\FileSentenceReader.cs" />
+    <Compile Include="IO\FileReader.cs" />
+    <Compile Include="IO\IInputReader.cs" />
+    <Compile Include="IO\StdinReader.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Terms\Term.cs" />
-    <Compile Include="IO\ISentenceReader.cs" />
-    <Compile Include="IO\StdinSentenceReader.cs" />
     <Compile Include="Recognizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
