@@ -36,13 +36,23 @@
   <ItemGroup>
     <Reference Include="LAIR.Collections, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\WordNet\WordNet\bin\Debug\LAIR.Collections.dll</HintPath>
+      <HintPath>..\lib\LAIR.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="LAIR.ResourceAPIs.WordNet">
-      <HintPath>..\..\WordNet\WordNet\bin\Debug\LAIR.ResourceAPIs.WordNet.dll</HintPath>
+    <Reference Include="LAIR.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\LAIR.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="OpenNLP">
-      <HintPath>..\..\Sharp\SharpNLP-1.0.2529-Bin\OpenNLP.dll</HintPath>
+    <Reference Include="LAIR.IO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\LAIR.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="LAIR.ResourceAPIs.WordNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\LAIR.ResourceAPIs.WordNet.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenNLP, Version=1.0.2529.39671, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\OpenNLP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
