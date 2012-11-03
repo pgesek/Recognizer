@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Recognizer.IO;
 
 namespace Recognizer.Glossary 
 {
     class DefaultGlossary : IGlossary
     {
-        private ISet<IGlossaryEntry> glossary = new HashSet<IGlossaryEntry>();
+        private ISet<IGlossaryEntry> glossary;
+
+        public DefaultGlossary(IInputReader reader) : this(reader, true) { }
+
+        public DefaultGlossary(IInputReader reader, bool readIds)
+        {
+            string input = reader.ReadInput();
+            glossary = GlossaryParser.ParseInput(input,readIds);
+        }
 
         #region IGlossary Members
 

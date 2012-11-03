@@ -56,6 +56,7 @@
     <Compile Include="Glossary\DefaultGlossary.cs" />
     <Compile Include="Glossary\DuplicateEntryException.cs" />
     <Compile Include="Glossary\GlossaryEntry.cs" />
+    <Compile Include="Glossary\GlossaryParser.cs" />
     <Compile Include="Glossary\IGlossary.cs" />
     <Compile Include="Glossary\IGlossaryEntry.cs" />
     <Compile Include="IO\FileReader.cs" />

@@ -7,9 +7,10 @@ namespace Recognizer
         static void Main(string[] args)
         {
             Recognizer recognizer = new Recognizer();
-            IInputReader reader = new FileReader(Properties.Settings.Default.InputFile);
+            IInputReader inputReader = new FileReader(Properties.Settings.Default.InputFile);
+            IInputReader glossaryReader = new FileReader(Properties.Settings.Default.GlossaryFile);
 
-            recognizer.Run(reader);
+            recognizer.Run(inputReader, glossaryReader);
         }
     }
 }

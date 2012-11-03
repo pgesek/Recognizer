@@ -82,5 +82,29 @@ namespace Recognizer.Properties {
                 this["InputFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Geso\\workspace\\mgr\\glossary.txt")]
+        public string GlossaryFile {
+            get {
+                return ((string)(this["GlossaryFile"]));
+            }
+            set {
+                this["GlossaryFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ReadGlossaryIds {
+            get {
+                return ((bool)(this["ReadGlossaryIds"]));
+            }
+            set {
+                this["ReadGlossaryIds"] = value;
+            }
+        }
     }
 }

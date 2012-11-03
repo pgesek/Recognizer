@@ -5,6 +5,7 @@ using OpenNLP.Tools.Parser;
 using Recognizer.IO;
 using Recognizer.NLP;
 using Recognizer.Util;
+using Recognizer.Glossary;
 
 namespace Recognizer
 {
@@ -12,6 +13,7 @@ namespace Recognizer
     {
         private WordNetEngine wordnet;
         private OpenNLPService nlp;
+        private IGlossary glossary;
 
         public Recognizer()
         {
@@ -33,9 +35,11 @@ namespace Recognizer
             nlp = new OpenNLPService(modelDir);
         }
 
-        public void Run(IInputReader reader)
+        public void Run(IInputReader inputReader, IInputReader glossaryReader)
         {
-            string input = reader.ReadInput();
+            glossary = new DefaultGlossary(glossaryReader, Properties.Settings.Default.ReadGlossaryIds);
+            
+            string input = inputReader.ReadInput();
 
             IEnumerable<Parse> sentences = nlp.ParseInput(input);
         }

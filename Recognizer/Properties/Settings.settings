@@ -17,5 +17,11 @@
     <Setting Name="InputFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\Geso\workspace\mgr\input.txt</Value>
     </Setting>
+    <Setting Name="GlossaryFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Geso\workspace\mgr\glossary.txt</Value>
+    </Setting>
+    <Setting Name="ReadGlossaryIds" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
