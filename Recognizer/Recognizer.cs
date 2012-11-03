@@ -14,8 +14,6 @@ namespace Recognizer
         private WordNetEngine wordnet;
         private OpenNLPService nlp;
 
-        private Dictionary<string, Term> nouns = new Dictionary<string, Term>();
-
         public Recognizer()
         {
             Init();
@@ -41,38 +39,6 @@ namespace Recognizer
             string input = reader.ReadInput();
 
             IEnumerable<Parse> sentences = nlp.ParseInput(input);
-        }
-
-        private void ParseSentence(string sentence)
-        {
-            string trimmedSentence = StringUtil.TrimSentence(sentence);
-            string[] words = trimmedSentence.Split(' ');
-            
-            foreach (string word in words)
-            {
-                ParseWord(word);
-            }
-        }
-
-        private void ParseWord(string word)
-        {
-            ParseAsNoun(word);    
-        }
-
-        private void ParseAsNoun(string word)
-        {
-            Set<SynSet> synsets = wordnet.GetSynSets(word, WordNetEngine.POS.Noun);
-            foreach (SynSet synset in synsets) 
-            {
-                if (nouns.ContainsKey(synset.ID))
-                {
-                    nouns[synset.ID].Count++;
-                }
-                else
-                {
-                    nouns[synset.ID] = new Term(synset);
-                }
-            }
         }
     }
 }
