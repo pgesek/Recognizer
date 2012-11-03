@@ -38,7 +38,7 @@ namespace Recognizer
         public void Init(string wordnetDir, bool inMemory, string modelDir)
         {
             wordnet = new WordNetEngine(wordnetDir, inMemory);
-            sentenceDetector = new EnglishMaximumEntropySentenceDetector(Path.Combine(modelDir + "EnglishSD.nbin"));
+            sentenceDetector = new EnglishMaximumEntropySentenceDetector(Path.Combine(modelDir, "EnglishSD.nbin"));
         }
 
         public void Run(IInputReader reader)
