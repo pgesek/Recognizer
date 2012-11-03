@@ -7,6 +7,9 @@ using System.Text;
 using LAIR.ResourceAPIs.WordNet;
 using LAIR.Collections.Generic;
 using OpenNLP.Tools.SentenceDetect;
+using OpenNLP.Tools.Tokenize;
+using OpenNLP.Tools.PosTagger;
+using OpenNLP.Tools.Chunker;
 
 using Recognizer.Util;
 using Recognizer.IO;
@@ -18,6 +21,9 @@ namespace Recognizer
     {
         private WordNetEngine wordnet;
         private EnglishMaximumEntropySentenceDetector sentenceDetector;
+        private EnglishMaximumEntropyTokenizer tokenizer;
+        private EnglishMaximumEntropyPosTagger posTagger;
+        private EnglishTreebankChunker chunker;
 
         private Dictionary<string, Term> nouns = new Dictionary<string, Term>();
 
@@ -39,13 +45,24 @@ namespace Recognizer
         {
             wordnet = new WordNetEngine(wordnetDir, inMemory);
             sentenceDetector = new EnglishMaximumEntropySentenceDetector(Path.Combine(modelDir, "EnglishSD.nbin"));
+            tokenizer = new EnglishMaximumEntropyTokenizer(Path.Combine(modelDir, "EnglishTok.nbin"));
+            posTagger = new EnglishMaximumEntropyPosTagger(Path.Combine(modelDir, "EnglishPOS.nbin"));
+            chunker = new EnglishTreebankChunker(Path.Combine(modelDir, "EnglishChunk.nbin"));
         }
 
         public void Run(IInputReader reader)
         {
             string input = reader.ReadInput();
 
-            string[] sentences = sentenceDetector.SentenceDetect(input); 
+            string[] sentences = sentenceDetector.SentenceDetect(input);
+
+            foreach (string sentence in sentences)
+            {
+                string[] tokens = tokenizer.Tokenize(sentence);
+                string[] tags = posTagger.Tag(tokens);
+
+                string formattedSentence = chunker.GetChunks(tokens, tags);
+            }
         }
 
         private void ParseSentence(string sentence)
