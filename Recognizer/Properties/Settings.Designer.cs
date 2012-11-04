@@ -106,5 +106,17 @@ namespace Recognizer.Properties {
                 this["ReadGlossaryIds"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Geso\\workspace\\mgr\\log")]
+        public string LogDir {
+            get {
+                return ((string)(this["LogDir"]));
+            }
+            set {
+                this["LogDir"] = value;
+            }
+        }
     }
 }

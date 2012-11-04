@@ -7,6 +7,7 @@ using Recognizer.NLP;
 using Recognizer.Util;
 using Recognizer.Glossary;
 using Recognizer.BoW;
+using Recognizer.Log;
 
 namespace Recognizer
 {
@@ -47,12 +48,14 @@ namespace Recognizer
             
             input = inputReader.ReadInput();
 
-            calcBagOfWords();
+            CalcBagOfWords();
 
             IEnumerable<Parse> sentences = nlp.ParseInput(input);
+
+            LogResults();
         }
 
-        private void calcBagOfWords()
+        private void CalcBagOfWords()
         {
             IEnumerable<string> sentences = nlp.DetectSentences(input);
             foreach (string sentence in sentences)
@@ -63,6 +66,11 @@ namespace Recognizer
                     bow.AddWord(word.ToLower());
                 }
             }
+        }
+
+        private void LogResults()
+        {
+            LogFacade.LogBOW(bow);
         }
     }
 }

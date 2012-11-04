@@ -73,6 +73,7 @@
     <Compile Include="IO\FileReader.cs" />
     <Compile Include="IO\IInputReader.cs" />
     <Compile Include="IO\StdinReader.cs" />
+    <Compile Include="Log\LogFacade.cs" />
     <Compile Include="NLP\INLPService.cs" />
     <Compile Include="NLP\OpenNLPService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
