@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="com.sporadicism.util.Logger">
+      <HintPath>..\lib\com.sporadicism.util.Logger.dll</HintPath>
+    </Reference>
     <Reference Include="LAIR.Collections, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\LAIR.Collections.dll</HintPath>
