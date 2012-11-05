@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using LAIR.Collections.Generic;
 using LAIR.ResourceAPIs.WordNet;
 using OpenNLP.Tools.Parser;
@@ -8,6 +9,7 @@ using Recognizer.Util;
 using Recognizer.Glossary;
 using Recognizer.BoW;
 using Recognizer.Log;
+using Recognizer.Terms;
 
 namespace Recognizer
 {
@@ -18,6 +20,7 @@ namespace Recognizer
         private IGlossary glossary;
 
         private BagOfWords bow;
+        private ITermRepository terms;
 
         private string input;
 
@@ -40,6 +43,7 @@ namespace Recognizer
             wordnet = new WordNetEngine(wordnetDir, inMemory);
             nlp = new OpenNLPService(modelDir);
             bow = new BagOfWords();
+            terms = new FlatRepository();
         }
 
         public void Run(IInputReader inputReader, IInputReader glossaryReader)
@@ -48,22 +52,25 @@ namespace Recognizer
             
             input = inputReader.ReadInput();
 
-            CalcBagOfWords();
+            FirstRun();
 
             IEnumerable<Parse> sentences = nlp.ParseInput(input);
 
             LogResults();
         }
 
-        private void CalcBagOfWords()
+        private void FirstRun()
         {
             IEnumerable<string> sentences = nlp.DetectSentences(input);
             foreach (string sentence in sentences)
             {
                 IEnumerable<string> words = nlp.Tokenize(sentence);
-                foreach (string word in words)
+                IEnumerable<string> tags = nlp.PosTag(words);
+
+                foreach (Term term in tags.Zip(words, (word, tag) => new Term { PoS = tag, Word = word }))
                 {
-                    bow.AddWord(word.ToLower());
+                    bow.AddWord(term.Word.ToLower());
+                    terms.Add(term);
                 }
             }
         }
