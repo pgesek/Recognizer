@@ -51,7 +51,6 @@ namespace Recognizer.Helper
             return nouns.Contains(pos);
         }
            
-
         public Parts FromString(string tag)
         {
             switch (tag)
