@@ -70,6 +70,7 @@
     <Compile Include="Glossary\GlossaryParser.cs" />
     <Compile Include="Glossary\IGlossary.cs" />
     <Compile Include="Glossary\IGlossaryEntry.cs" />
+    <Compile Include="Helper\POS.cs" />
     <Compile Include="IO\FileReader.cs" />
     <Compile Include="IO\IInputReader.cs" />
     <Compile Include="IO\StdinReader.cs" />
