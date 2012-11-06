@@ -90,6 +90,8 @@
     <Compile Include="Terms\Term.cs" />
     <Compile Include="Util\FileUtils.cs" />
     <Compile Include="Util\StringUtil.cs" />
+    <Compile Include="Wordnet\ISynsetSelector.cs" />
+    <Compile Include="Wordnet\MostUsedSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

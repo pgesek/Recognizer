@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LAIR.ResourceAPIs.WordNet;
+using Recognizer.Helper;
 
 namespace Recognizer.Terms
 {
@@ -10,7 +11,7 @@ namespace Recognizer.Terms
     {
         public string Word { get; set; }
 
-        public string PoS { get; set; }
+        public POS PoS { get; set; }
 
         public SynSet Synset { get; set; }
 

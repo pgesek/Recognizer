@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LAIR.ResourceAPIs.WordNet;
 
 namespace Recognizer.Helper
 {
@@ -39,19 +40,69 @@ namespace Recognizer.Helper
         public enum Parts
         {
             CC, CD, DT, EX, FW, IN, JJ, JJR, JJS, LS, MD, NN, NNP, NNPS, NNS, PDT, POS, PRP, PRPDOLLAR, RB,
-            RBR, RBS, RP, SYM, TO ,UH, VB, VBD, VGB, VBN, VBP, VBZ, WDT, WP, WPDOLLAR, WRB, DOUBLE_QUOTE, COMMA, RIGHT_DOUBLE_QUOTE,
+            RBR, RBS, RP, SYM, TO ,UH, VB, VBD, VBG, VBN, VBP, VBZ, WDT, WP, WPDOLLAR, WRB, DOUBLE_QUOTE, COMMA, RIGHT_DOUBLE_QUOTE,
             SENTENCE_FINAL, COLON, DOLLAR, POUND, LRB, RRB
         }
 
-        private static readonly Parts[] nouns = new Parts[] { Parts.NN, Parts.NNP, Parts.NNPS, Parts.NNS };
+        private readonly Parts _self;
 
-        public bool IsNoun(string tag)
+        private static readonly Parts[] nouns = new Parts[] { Parts.NN, Parts.NNP, Parts.NNPS, Parts.NNS };
+        private static readonly Parts[] verbs = new Parts[] { Parts.VB, Parts.VBD, Parts.VBN, Parts.VBZ, Parts.VBP, Parts.VBG };
+        private static readonly Parts[] adverbs = new Parts[] { Parts.RB, Parts.RBR, Parts.RBS, Parts.WRB };
+        private static readonly Parts[] adjectives = new Parts[] { Parts.JJ, Parts.JJR, Parts.JJS };
+
+        public POS(string tag)
         {
-            Parts pos = FromString(tag);
-            return nouns.Contains(pos);
+            _self = FromString(tag);
         }
-           
-        public Parts FromString(string tag)
+
+        public Parts Value { get { return _self; } }
+
+        public WordNetEngine.POS ForWordnet()
+        {
+            if (IsNoun())
+            {
+                return WordNetEngine.POS.Noun;
+            }
+            else if (IsVerb())
+            {
+                return WordNetEngine.POS.Verb;
+            }
+            else if (IsAdverb())
+            {
+                return WordNetEngine.POS.Adverb;
+            }
+            else if (IsAdjective())
+            {
+                return WordNetEngine.POS.Adjective;
+            }
+            else
+            {
+                return WordNetEngine.POS.None;
+            }
+        }
+
+        public bool IsNoun()
+        {
+            return nouns.Contains(_self);
+        }
+
+        public bool IsVerb()
+        {
+            return verbs.Contains(_self);
+        }
+
+        public bool IsAdverb()
+        {
+            return adverbs.Contains(_self);
+        }
+
+        public bool IsAdjective()
+        {
+            return adjectives.Contains(_self);
+        }
+
+        private Parts FromString(string tag)
         {
             switch (tag)
             {

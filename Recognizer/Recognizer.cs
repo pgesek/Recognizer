@@ -10,6 +10,8 @@ using Recognizer.Glossary;
 using Recognizer.BoW;
 using Recognizer.Log;
 using Recognizer.Terms;
+using Recognizer.Helper;
+using Recognizer.Wordnet;
 
 namespace Recognizer
 {
@@ -21,6 +23,8 @@ namespace Recognizer
 
         private BagOfWords bow;
         private ITermRepository terms;
+
+        private ISynsetSelector synsetSelector;
 
         private string input;
 
@@ -44,6 +48,7 @@ namespace Recognizer
             nlp = new OpenNLPService(modelDir);
             bow = new BagOfWords();
             terms = new FlatRepository();
+            synsetSelector = new MostUsedSelector();
         }
 
         public void Run(IInputReader inputReader, IInputReader glossaryReader)
@@ -67,9 +72,12 @@ namespace Recognizer
                 IEnumerable<string> words = nlp.Tokenize(sentence);
                 IEnumerable<string> tags = nlp.PosTag(words);
 
-                foreach (Term term in tags.Zip(words, (word, tag) => new Term { PoS = tag, Word = word }))
+                foreach (Term term in words.Zip(tags, (word, tag) => new Term { PoS = new POS(tag), Word = word }))
                 {
+                    // bag of words
                     bow.AddWord(term.Word.ToLower());
+                    // main stuff
+                    term.Synset = synsetSelector.SelectSysnet(term.Word, term.PoS, wordnet);
                     terms.Add(term);
                 }
             }
