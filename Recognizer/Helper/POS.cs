@@ -132,5 +132,21 @@ namespace Recognizer.Helper
                     return (Parts) Enum.Parse(typeof(Parts), tag);
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            if (obj is POS)
+            {
+                POS other = (POS) obj;
+                equal = _self == other.Value;
+            }
+            return equal;
+        }
+
+        public override int GetHashCode()
+        {
+            return _self.GetHashCode();
+        }
     }    
 }
