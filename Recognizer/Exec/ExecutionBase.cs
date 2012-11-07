@@ -27,7 +27,7 @@ namespace Recognizer.Exec
             this.glossary = glossary;
         }
 
-        protected SynSet SelectSynset(string word, POS pos)
+        protected virtual SynSet SelectSynset(string word, POS pos)
         {
             WordNetEngine.POS wordnetPOS = pos.ForWordnet();
             return (wordnetPOS == WordNetEngine.POS.None) ? null : wordnet.GetMostCommonSynSet(word, wordnetPOS);
