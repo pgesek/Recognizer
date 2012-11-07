@@ -9,6 +9,7 @@ using Recognizer.Glossary;
 using Recognizer.BoW;
 using Recognizer.Terms;
 using Recognizer.Helper;
+using Recognizer.Log;
 
 namespace Recognizer.Exec
 {
@@ -43,6 +44,8 @@ namespace Recognizer.Exec
                     flatRepo.Add(term);
                 }
             }
+
+            LogFacade.LogBOW(bow);
         }
 
         protected override SynSet SelectSynset(string word, POS pos)
