@@ -7,7 +7,6 @@ using Recognizer.NLP;
 using Recognizer.Glossary;
 using Recognizer.Helper;
 using Recognizer.BoW;
-using Recognizer.Terms;
 
 namespace Recognizer.Exec
 {
@@ -18,7 +17,6 @@ namespace Recognizer.Exec
         protected readonly IGlossary glossary;
 
         protected BagOfWords bow;
-        protected ITermRepository terms;
 
         public ExecutionBase(WordNetEngine wordnet, INLPService nlp, IGlossary glossary)
         {
