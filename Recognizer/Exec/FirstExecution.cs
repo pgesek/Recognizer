@@ -26,7 +26,7 @@ namespace Recognizer.Exec
             bow = new BagOfWords();
         }
 
-        public override void Run(string input )
+        public override void Run(string input)
         {
             IEnumerable<string> sentences = nlp.DetectSentences(input);
             foreach (string sentence in sentences)
