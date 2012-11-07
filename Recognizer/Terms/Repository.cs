@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Recognizer.Helper;
+using LAIR.ResourceAPIs.WordNet;
 
 namespace Recognizer.Terms
 {
@@ -29,6 +30,14 @@ namespace Recognizer.Terms
         {
             var result = from term in terms.Values
                          where term.PoS == pos
+                         select term;
+            return result;
+        }
+
+        public IEnumerable<Term> FindTermsByWordnetPOS(WordNetEngine.POS pos)
+        {
+            var result = from term in terms.Values
+                         where term.PoS.FitsWordnetPOS(pos)
                          select term;
             return result;
         }

@@ -133,6 +133,11 @@ namespace Recognizer.Helper
             }
         }
 
+        public bool FitsWordnetPOS(WordNetEngine.POS pos)
+        {
+            return ForWordnet() == pos;
+        }
+
         public override bool Equals(object obj)
         {
             bool equal = false;
