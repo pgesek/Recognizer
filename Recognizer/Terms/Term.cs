@@ -17,6 +17,6 @@ namespace Recognizer.Terms
 
         public int Occurences { get; set; }
 
-        public string ID { get { return Synset.ID ?? null; } }
+        public string ID { get { return (Synset == null) ? null : Synset.ID; } }
     }
 }
