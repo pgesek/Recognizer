@@ -11,7 +11,7 @@ using Recognizer.BoW;
 using Recognizer.Log;
 using Recognizer.Terms;
 using Recognizer.Helper;
-using Recognizer.Wordnet;
+using Recognizer.Exec;
 
 namespace Recognizer
 {
@@ -24,9 +24,9 @@ namespace Recognizer
         private BagOfWords bow;
         private ITermRepository terms;
 
-        private ISynsetSelector synsetSelector;
-
         private string input;
+
+        private List<IExecution> executions;
 
         public Recognizer()
         {
@@ -48,7 +48,9 @@ namespace Recognizer
             nlp = new OpenNLPService(modelDir);
             bow = new BagOfWords();
             terms = new FlatRepository();
-            synsetSelector = new MostUsedSelector();
+            
+            executions = new List<IExecution>();
+            executions.Add(new FirstExecution(wordnet, nlp, glossary));
         }
 
         public void Run(IInputReader inputReader, IInputReader glossaryReader)
@@ -57,35 +59,10 @@ namespace Recognizer
             
             input = inputReader.ReadInput();
 
-            FirstRun();
-
-            IEnumerable<Parse> sentences = nlp.ParseInput(input);
-
-            LogResults();
-        }
-
-        private void FirstRun()
-        {
-            IEnumerable<string> sentences = nlp.DetectSentences(input);
-            foreach (string sentence in sentences)
+            foreach (IExecution execution in executions)
             {
-                IEnumerable<string> words = nlp.Tokenize(sentence);
-                IEnumerable<string> tags = nlp.PosTag(words);
-
-                foreach (Term term in words.Zip(tags, (word, tag) => new Term { PoS = new POS(tag), Word = word }))
-                {
-                    // bag of words
-                    bow.AddWord(term.Word.ToLower());
-                    // main stuff
-                    term.Synset = synsetSelector.SelectSysnet(term.Word, term.PoS, wordnet);
-                    terms.Add(term);
-                }
+                execution.Run(input);
             }
-        }
-
-        private void LogResults()
-        {
-            LogFacade.LogBOW(bow);
         }
     }
 }

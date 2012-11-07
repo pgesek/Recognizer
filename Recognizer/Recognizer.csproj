@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoW\BagOfWords.cs" />
+    <Compile Include="Exec\FirstExecution.cs" />
+    <Compile Include="Exec\ExecutionBase.cs" />
+    <Compile Include="Exec\IExecution.cs" />
     <Compile Include="Glossary\DefaultGlossary.cs" />
     <Compile Include="Glossary\DuplicateEntryException.cs" />
     <Compile Include="Glossary\GlossaryEntry.cs" />
@@ -90,8 +93,6 @@
     <Compile Include="Terms\Term.cs" />
     <Compile Include="Util\FileUtils.cs" />
     <Compile Include="Util\StringUtil.cs" />
-    <Compile Include="Wordnet\ISynsetSelector.cs" />
-    <Compile Include="Wordnet\MostUsedSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
