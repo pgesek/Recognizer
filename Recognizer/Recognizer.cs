@@ -50,7 +50,7 @@ namespace Recognizer
             terms = new FlatRepository();
             
             executions = new List<IExecution>();
-            executions.Add(new FirstExecution(wordnet, nlp, glossary));
+            executions.Add(new FirstExecution(wordnet, nlp));
         }
 
         public void Run(IInputReader inputReader, IInputReader glossaryReader)
@@ -61,7 +61,7 @@ namespace Recognizer
 
             foreach (IExecution execution in executions)
             {
-                execution.Run(input);
+                execution.Run(input, glossary);
             }
         }
     }

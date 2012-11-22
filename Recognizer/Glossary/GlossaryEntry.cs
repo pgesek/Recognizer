@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LAIR.ResourceAPIs.WordNet;
 
 namespace Recognizer.Glossary
 {
@@ -10,6 +11,8 @@ namespace Recognizer.Glossary
         private string _word;
         private string _definition;
         private string _ID;
+
+        public SynSet Synset { get; set; }
 
         #region IGlossaryEntry Members
 

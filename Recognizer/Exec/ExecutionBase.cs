@@ -14,15 +14,13 @@ namespace Recognizer.Exec
     {
         protected readonly WordNetEngine wordnet;
         protected readonly INLPService nlp;
-        protected readonly IGlossary glossary;
 
         protected BagOfWords bow;
 
-        public ExecutionBase(WordNetEngine wordnet, INLPService nlp, IGlossary glossary)
+        public ExecutionBase(WordNetEngine wordnet, INLPService nlp)
         {
             this.wordnet = wordnet;
             this.nlp = nlp;
-            this.glossary = glossary;
         }
 
         protected virtual SynSet SelectSynset(string word, POS pos)
@@ -33,7 +31,7 @@ namespace Recognizer.Exec
 
         #region IExecution Members
 
-        public abstract void Run(string input);
+        public abstract void Run(string input, IGlossary glossary);
 
         #endregion
     }

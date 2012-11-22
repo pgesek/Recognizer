@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Recognizer.IO;
+using LAIR.ResourceAPIs.WordNet;
+using Recognizer.Helper;
 
 namespace Recognizer.Glossary 
 {
@@ -67,6 +69,15 @@ namespace Recognizer.Glossary
             return result;
         }
 
+        public void ProcessSynsets(WordNetEngine wordnet)
+        {
+            foreach (IGlossaryEntry entry in glossary)
+            {
+                SynSet synset = FindSynset(entry, wordnet);
+                entry.Synset = synset;
+            }
+        }
+
         #endregion
 
         private void CheckForDuplicate(string ID, string word)
@@ -93,6 +104,22 @@ namespace Recognizer.Glossary
                           select id).Max();
 
             return (maxID + 1).ToString();
+        }
+
+        private SynSet FindSynset(IGlossaryEntry entry, WordNetEngine wordnet)
+        {
+            // TODO: find POS, use only nouns for now
+            int? minDistance = null;
+            SynSet result = null;
+            foreach (SynSet synset in wordnet.GetSynSets(entry.Word, WordNetEngine.POS.Noun))
+            {
+                int distance = LevenshteinDistance.Compute(entry.Definition, synset.Gloss);
+                if (minDistance == null || minDistance > distance)
+                {
+                    result = synset;
+                }
+            }
+            return result;
         }
     }
 }

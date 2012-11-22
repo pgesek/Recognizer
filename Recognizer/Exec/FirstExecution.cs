@@ -18,16 +18,22 @@ namespace Recognizer.Exec
         private readonly FlatRepository flatRepo = new FlatRepository();
         private readonly Repository terms = new Repository();
 
+        private IGlossary glossary;
+
         #region IExecution Members
 
-        public FirstExecution(WordNetEngine wordnet, INLPService nlp, IGlossary glossary)
-            :base(wordnet, nlp, glossary) 
+        public FirstExecution(WordNetEngine wordnet, INLPService nlp)
+            :base(wordnet, nlp) 
         {
             bow = new BagOfWords();
         }
 
-        public override void Run(string input)
+        public override void Run(string input, IGlossary glossary)
         {
+            this.glossary = glossary;
+
+            glossary.ProcessSynsets(wordnet);
+            
             IEnumerable<string> sentences = nlp.DetectSentences(input);
             foreach (string sentence in sentences)
             {
