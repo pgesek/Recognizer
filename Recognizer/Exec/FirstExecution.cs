@@ -61,10 +61,18 @@ namespace Recognizer.Exec
             WordNetEngine.POS wordnetPos = pos.ForWordnet();
             if (wordnetPos != WordNetEngine.POS.None)
             {
-                Set<SynSet> synsets = wordnet.GetSynSets(word, wordnetPos);
-                foreach (SynSet synset in synsets)
+                IGlossaryEntry glossEntry = glossary.FindWord(word);
+                if (glossEntry == null)
                 {
-                    // great algorythms will be added here       
+                    Set<SynSet> synsets = wordnet.GetSynSets(word, wordnetPos);
+                    foreach (SynSet synset in synsets)
+                    {
+                        // great algorythms will be added here       
+                    }
+                }
+                else
+                {
+                    result = glossEntry.Synset;
                 }
             }
 
